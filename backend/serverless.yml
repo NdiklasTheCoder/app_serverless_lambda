@@ -198,8 +198,7 @@ functions:
         Action:
           - s3:*
           - xray:PutTraceSegments 
-        Resource: arn:aws:s3:::${self:provider.environment.S3_BUCKET_NAME}/*
-
+        Resource: arn:aws:s3:::${self:provider.environment.ATTACHMENT_S3_BUCKET}/*
 
 resources:
   Resources:

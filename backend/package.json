@@ -13,13 +13,13 @@
     "middy": "^0.24.0",
     "source-map-support": "^0.5.21",
     "uuid": "^3.4.0",
-    "winston": "^3.8.1"
+    "winston": "^3.8.2"
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.103",
     "@types/jsonwebtoken": "^8.5.9",
     "@types/node": "^10.17.60",
-    "aws-sdk": "^2.1210.0",
+    "aws-sdk": "^2.1211.0",
     "serverless-aws-documentation": "^1.1.0",
     "serverless-iam-roles-per-function": "^3.2.0",
     "serverless-plugin-canary-deployments": "^0.4.8",
