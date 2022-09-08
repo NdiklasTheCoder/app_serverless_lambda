@@ -1,9 +1,12 @@
-import {TodoItem} from "../models/TodoItem";
+import { ToDoAccess } from '../dataLayer/todosAccess'
+import { AttachmentUtils } from '../fileStorage/attachmentUtils';
 import {parseUserId} from "../auth/utils";
-import {CreateTodoRequest} from "../requests/CreateTodoRequest";
-import {UpdateTodoRequest} from "../requests/UpdateTodoRequest";
-import {TodoUpdate} from "../models/TodoUpdate";
-import {ToDoAccess} from "../dataLayer/ToDoAccess";
+import { TodoItem } from '../models/TodoItem'
+import { CreateTodoRequest } from '../requests/CreateTodoRequest'
+import { UpdateTodoRequest } from '../requests/UpdateTodoRequest'
+import { TodoUpdate } from '../models/TodoUpdate';
+
+// TODO: Implement businessLogic
 
 const uuidv4 = require('uuid/v4');
 const toDoAccess = new ToDoAccess();
@@ -16,7 +19,7 @@ export async function getAllToDo(jwtToken: string): Promise<TodoItem[]> {
 export function createToDo(createTodoRequest: CreateTodoRequest, jwtToken: string): Promise<TodoItem> {
     const userId = parseUserId(jwtToken);
     const todoId =  uuidv4();
-    const s3BucketName = process.env.S3_BUCKET_NAME;
+    const s3BucketName = process.env.ATTACHMENT_S3_BUCKET;
     
     return toDoAccess.createToDo({
         userId: userId,
@@ -39,5 +42,5 @@ export function deleteToDo(todoId: string, jwtToken: string): Promise<string> {
 }
 
 export function generateUploadUrl(todoId: string): Promise<string> {
-    return toDoAccess.generateUploadUrl(todoId);
+    return AttachmentUtils.generateUploadUrl(todoId);
 }
