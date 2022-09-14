@@ -1,6 +1,6 @@
 org: ndiklasthecoder
-app: serverless-todo-app-v1
-service: serverless-todo-app-1
+app: serverless-todo-app-v2
+service: serverless-todo-app-2
 
 
 plugins:
@@ -120,6 +120,11 @@ functions:
           cors: true
           authorizer: Auth
           reqValidatorName: 'RequestBodyValidator'
+          documentation:
+            summary: Create Request
+            description: Create Request
+            requestModels:
+              'application/json': CreateTodoRequest
     iamRoleStatementsName: ${self:provider.environment.PROJECT_NAME}-create-todo-role-${self:provider.stage}
     iamRoleStatements:
       - Effect: Allow
