@@ -2,6 +2,10 @@ import * as AWS from 'aws-sdk'
 import { Types } from 'aws-sdk/clients/s3';
 // import * as AWSXRay from 'aws-xray-sdk'
 import { createLogger } from '../utils/logger'
+import * as AWSXRay from 'aws-xray-sdk'
+
+const XAWS = AWSXRay.captureAWS(AWS)
+
 
 const logger = createLogger('TodosAccess')
 // const XAWS = AWSXRay.captureAWS(AWS)
@@ -11,7 +15,7 @@ export class AttachmentUtils {
 
     static async generateUploadUrl(todoId: string): Promise<string> {
 
-        const s3Client: Types = new AWS.S3({ signatureVersion: 'v4' })
+        const s3Client: Types = new XAWS.S3({ signatureVersion: 'v4' })
     
         const url = s3Client.getSignedUrl('putObject', {
             Bucket: process.env.ATTACHMENT_S3_BUCKET,
